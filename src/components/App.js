@@ -1,10 +1,13 @@
 // import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, NavLink, Route} from 'react-router-dom'
+import {BrowserRouter as Router, NavLink, Route, Switch} from 'react-router-dom'
 
 const Home = ()=> <h1>Strona strartowa</h1>
 const News = ()=> <h1>SAktualnosci</h1>
 const Contact = ()=> <h1>Kotnakt</h1>
+const ErrorPage = ()=> {
+  return (<h1>Strona nie istnieje</h1>)
+}
 
 function App() {
   return (
@@ -20,9 +23,12 @@ function App() {
         </nav>
       </header>
       <section>
-      <Route path="/" exact={true} component={Home}/>
-      <Route path="/contact" component={Contact}/>
-      <Route path="/news" component={News}/>
+        <Switch>
+        <Route path="/" exact component={Home}/>
+         <Route path="/contact" component={Contact}/>
+         <Route path="/news" component={News}/>
+         <Route component={ErrorPage}/>
+        </Switch>
       </section>
     </div>
     </Router>
